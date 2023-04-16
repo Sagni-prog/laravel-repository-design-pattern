@@ -25,30 +25,38 @@ class PostRepository implements PostRepositoryInterface{
   
   public function findPost($id){
   
-     return Post::find($id);
+     return Post::where([
+            'isDeleted' => false,
+            'deleted_at' => null,
+            'id' => $id
+     ])->first();
      
   }
   
   public function updatePost($id,$data){
      
-     return Post::find($id)
-                  ->update([
+     return Post::where([
+                  'isDeleted' => false,
+                  'deleted_at' => null,
+                  'id' => $id
+                  ])
+                    ->update([
                       'post_title' => $data['post_title'],
                       'post_content' => $data['post_content'],
-                      'slug' => Str::kebab($data('post_title'))
+                      'slug' => Str::kebab($data['post_title'])
                   ]);
      }
      
   public function destroyPost($id){
        
        return Post::where([
-           'id' => $id,
-           'isDeleted' => false,
-           'deteted_at' => null
-       ])->update([
-           'isDeleted' => true,
-           'deleted_at' => Carbon::now()
-       ]);
+         'isDeleted' => false,
+         'deleted_at' => null,
+         'id' => $id
+         ])->update([
+             'isDeleted' => true,
+             'deleted_at' => Carbon::now(),
+         ]);
    }   
 }
 

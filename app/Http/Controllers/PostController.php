@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Str;
 use App\Repositories\Interfaces\PostRepositoryInterface;
 
 class PostController extends Controller
@@ -18,13 +19,17 @@ class PostController extends Controller
  
     public function index(){
          
-        $data = $this->postInterface->getAllPosts();
-       
-       echo $data['post_title'];
+         try {      
+            $posts = $this->postInterface->getAllPosts();
+            return view('posts.app',compact('posts'));
+         } catch (\Exception $exception) {
+             
+         }
+   
     }
     
-    public function show(){
-    
+    public function show($id){
+       return $id;
     }
     
     public function create(){
@@ -36,25 +41,43 @@ class PostController extends Controller
       try {
         
           $data = $request->validated();
+          $data['slug'] = Str::kebab($data['post_title']);
           $posts = $this->postInterface->storePost($data);
           
       } catch (\Exception $exception) {
-      
+        
          return redirect('resource-not-found',compact($exception->getMessage()));
          
       }
     }
     
     public function edit($id){
-    
+         
+         try {
+         
+            $post = $this->postInterface->findPost($id);
+            return view('posts.edit-post',compact('post'));
+            
+         } catch (\Throwable $th) {
+            throw $th;
+         }
     }
     
-    public function update(PostRequest $request){
+    public function update(Request $rq,PostRequest $request,$id){
     
-       $data = $request->validated();
+        $data = $request->validated();
+        $isUpdated = $this->postInterface->updatePost($id,$data);
+         if(!$isUpdated){
+            return back()->with('error','Oops! something went wrong please try again');
+         }
     }
     
-    public function destroy(){
-    
+    public function destroy($id){
+       $isDeleted = $this->postInterface->destroyPost($id);
+       if(!$isDeleted){
+       
+       }
+       
+       return back()->with('success','You have successfully deleted the post');
     }
 }

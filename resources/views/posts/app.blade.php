@@ -3,8 +3,9 @@
     <div class="container my-5">
         <div class="row">
             <div class="col-xl-6">
+            
                 {{-- @if (Session::has('success')) --}}
-                    <div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
+                    {{-- <div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
                             <use xlink:href="#check-circle-fill" />
                         </svg>
@@ -12,7 +13,7 @@
                         <div>
                             {{ Session::get('success') }}
                         </div>
-                    </div>
+                    </div> --}}
                 {{-- @elseif (Session::has('failed'))
                     <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
@@ -25,9 +26,10 @@
                         </div>
                     </div>
                 @endif --}}
+                
             </div>
             <div class="col-xl-6 text-end">
-                <a href="" class="btn btn-primary"> Create Post </a>
+                <a href="{{route('post.create')}}" class="btn btn-primary"> Create Post </a>
             </div>
         </div>
         <div class="table-responsive">
@@ -42,77 +44,17 @@
                 </thead>
                 <tbody>
                 
-                    <tr>
-                        <td>1</td>
-                        <td scope="row">This is repository</td>
-                        <td>repository desigh pattern is good for maintainablity</td>
-                        <td>
-                                <a href="#" class="btn btn-sm btn-info">View</a>
-                                <a href="#" class="btn btn-sm btn-success">Edit</a>
-                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td scope="row">This is repository</td>
-                        <td>repository desigh pattern is good for maintainablity</td>
-                        <td>
-                                <a href="#" class="btn btn-sm btn-info">View</a>
-                                <a href="#" class="btn btn-sm btn-success">Edit</a>
-                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td scope="row">This is repository</td>
-                        <td>repository desigh pattern is good for maintainablity</td>
-                        <td>
-                                <a href="#" class="btn btn-sm btn-info">View</a>
-                                <a href="#" class="btn btn-sm btn-success">Edit</a>
-                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td scope="row">This is repository</td>
-                        <td>repository desigh pattern is good for maintainablity</td>
-                        <td>
-                                <a href="#" class="btn btn-sm btn-info">View</a>
-                                <a href="#" class="btn btn-sm btn-success">Edit</a>
-                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td scope="row">This is repository</td>
-                        <td>repository desigh pattern is good for maintainablity</td>
-                        <td>
-                                <a href="#" class="btn btn-sm btn-info">View</a>
-                                <a href="#" class="btn btn-sm btn-success">Edit</a>
-                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td scope="row">This is repository</td>
-                        <td>repository desigh pattern is good for maintainablity</td>
-                        <td>
-                                <a href="#" class="btn btn-sm btn-info">View</a>
-                                <a href="#" class="btn btn-sm btn-success">Edit</a>
-                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    {{-- @forelse ($posts as $post)
+                   
+                    @forelse ($posts as $post)
                         <tr>
                             <td>{{ $post->id }}</td>
-                            <td scope="row">{{ $post->title ?? '-' }}</td>
-                            <td>{{ $post->content ?? '-' }}</td>
+                            <td scope="row">{{ $post->post_title ?? '-' }}</td>
+                            <td>{{ $post->post_content ?? '-' }}</td>
                             <td>
-                                <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                <form action="{{route('post.delete',$post->id)}}" method="POST">
                                     @csrf
-                                    @method('DELETE')
-                                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-sm btn-info">View</a>
-                                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-success">Edit</a>
+                                    <a href="{{ route('post.show',$post->id)}}" class="btn btn-sm btn-info">View</a>
+                                    <a href="{{ route('post.edit',$post->id)}}" class="btn btn-sm btn-success">Edit</a>
                                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                 </form>
                             </td>
@@ -123,7 +65,9 @@
                                 <p class="text-danger text-center">No post found!</p>
                             </td>
                         </tr>
-                    @endforelse --}}
+                    @endforelse
+                    
+                    
                 </tbody>
             </table>
         </div>
