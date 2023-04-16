@@ -9,16 +9,6 @@ use GuzzleHttp\Psr7\Request;
 class PayController extends Controller
 {
 
-// public function __construct(){
-
-//     $this->orderid = "21798378";
-//     $this->merchantid = config('app.merchant_id');
-//     $this->merchantpw = "66d72697efb172ee7f50f2fd7a506d37";
-//     $this->amount = "10.00";
-//     $this->returnurl = "http://localhost/mastercard";
-//     $this->currency = "USD";
-// }
-
 public function sms(){  
         
     $client = new Client();
