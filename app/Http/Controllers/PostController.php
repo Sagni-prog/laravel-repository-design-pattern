@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Request\PostRequest;
-use  App\Repositories\Interfaces\PostRepositoryInterface;
+use App\Http\Requests\PostRequest;
+use App\Repositories\Interfaces\PostRepositoryInterface;
 
 class PostController extends Controller
 {
@@ -20,7 +20,7 @@ class PostController extends Controller
          
         $data = $this->postInterface->getAllPosts();
        
-       echo $data;
+       echo $data['post_title'];
     }
     
     public function show(){
@@ -35,6 +35,7 @@ class PostController extends Controller
     public function store(PostRequest $request){
     
        $data = $request->validated();
+       $posts = $this->postInterface->storePost($data);
     }
     
     public function edit($id){
