@@ -46,7 +46,6 @@ class PostRepository implements PostRepositoryInterface{
            'isDeleted' => true,
            'deleted_at' => Carbon::now()
        ]);
-  }   
-
+   }   
 }
 
