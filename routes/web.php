@@ -5,10 +5,8 @@ use GuzzleHttp\Client;
 use App\Http\Controllers\PostController;
 
 
-Route::get('/', function () {
-    return view('posts.create');
-});
+Route::get('/',[PostController::class,'index']);
 
 Route::get('post',[PostController::class,'create']);
-Route::post('post',[PostController::class,'store']);
+Route::post('post',[PostController::class,'store'])->name('post.post');
 

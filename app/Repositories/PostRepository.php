@@ -10,6 +10,7 @@ class PostRepository implements PostRepositoryInterface{
 
   public function getAllPosts(){
      
+     return "hello this is from repository";
      return Post::all();
      
   }
