@@ -9,10 +9,7 @@
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
-    {{-- <section class="py-4">
-        <h3 class="text-center fw-bold">Repository Design Pattern | Programming Fields</h3>
-        @yield('posts.content')
-    </section> --}}
+   
     
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
