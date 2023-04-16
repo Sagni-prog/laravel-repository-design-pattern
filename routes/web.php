@@ -1,20 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use GuzzleHttp\Client;
+use App\Http\Controllers\PayController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('posts.create');
 });
 
-Route::prefix('dashboard/')->group(function(){
-   Route::get('/',function(){
-     // echo("hello from dashboard");
-    echo("hello");
-   });
-
-   Route::get('/user',function(){
-       echo("Leo");
-   });
-   
-});

@@ -29,6 +29,8 @@ return [
     */
 
     'env' => env('APP_ENV', 'production'),
+    
+    'merchant_id' => env('MERCHANT_KEY'),
 
     /*
     |--------------------------------------------------------------------------
