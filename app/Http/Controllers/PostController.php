@@ -33,9 +33,16 @@ class PostController extends Controller
     }
     
     public function store(PostRequest $request){
-    
-       $data = $request->validated();
-       $posts = $this->postInterface->storePost($data);
+      try {
+        
+          $data = $request->validated();
+          $posts = $this->postInterface->storePost($data);
+          
+      } catch (\Exception $exception) {
+      
+         return redirect('resource-not-found',compact($exception->getMessage()));
+         
+      }
     }
     
     public function edit($id){

@@ -10,8 +10,10 @@ class PostRepository implements PostRepositoryInterface{
 
   public function getAllPosts(){
      
-     return "hello this is from repository";
-     return Post::all();
+     return Post::where([
+        'isDeleted' => false,
+        'deleted_at' => null
+     ])->get();
      
   }
   
